@@ -1,0 +1,18 @@
+{
+  "name": "static-html-webpack-plugin",
+  "version": "0.0.0",
+  "description": "Genrate Static Html Resources ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eval": "^0.1.0",
+    "lodash": "^3.10.1"
+  },
+  "devDependencies": {
+    "bluebird": "^2.9.34"
+  }
+}
