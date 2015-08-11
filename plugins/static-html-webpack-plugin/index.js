@@ -7,7 +7,7 @@ function StaticSiteGeneratorWebpackPlugin(renderSourcePath, routes, locals) {
   this.renderSourcePath = renderSourcePath;
   this.routes = Array.isArray(routes) ? routes : [routes];
   this.locals = locals;
-  this.options = {};
+  this.options = {hash: true};
 }
 
 StaticSiteGeneratorWebpackPlugin.prototype.apply = function(compiler) {
@@ -70,11 +70,11 @@ var injectAssetsIntoHtml = function(html, assets) {
   });
   // Turn script files into script tags
   scripts = scripts.map(function(scriptPath) {
-    return '<script src="' + scriptPath + '"></script>';
+    return '<script src="/' + scriptPath + '"></script>';
   });
   // Turn css files into link tags
   styles = styles.map(function(stylePath) {
-    return '<link href="' + stylePath + '" rel="stylesheet">';
+    return '<link href="/' + stylePath + '" rel="stylesheet">';
   });
   // Injections
   var head = [];
@@ -196,6 +196,14 @@ StaticSiteGeneratorWebpackPlugin.prototype.htmlWebpackPluginAssets = function(co
   assets.css = _.uniq(assets.css);
 
   return assets;
+};
+
+StaticSiteGeneratorWebpackPlugin.prototype.appendHash = function (url, hash) {
+  
+  if (!url) {
+    return url;
+  }
+  return url + (url.indexOf('?') === -1 ? '?' : '&') + hash;
 };
 
 module.exports = StaticSiteGeneratorWebpackPlugin;

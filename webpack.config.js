@@ -13,7 +13,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /[\.js|\.jsx]$/, loaders: ['babel']},
+      { test: /[\.js|\.jsx]$/, loaders: ['babel'], include: srcPath},
       { test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass')},
       { test: /\.(woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
       { test: /\.(woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff2" },
@@ -31,7 +31,7 @@ module.exports = {
   debug: true,
   plugins: [
     new ExtractTextPlugin("main.css"),
-    new StaticHtmlWebpackPlugin('index.js', ['/', '/login', '/signup'])
+    new StaticHtmlWebpackPlugin('index.js', ['/', '/login/', '/signup/'])
   ]
 
 }
